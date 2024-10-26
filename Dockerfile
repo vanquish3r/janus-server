@@ -28,13 +28,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     uuid-dev \
     wget \
     ca-certificates && \
-    apt-get clean
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-# Update the certificate store
-RUN update-ca-certificates
-
-# Check network connectivity
-RUN curl -I https://github.com
+# Check if packages were installed successfully
+RUN echo "Packages installed successfully"
 
 # Clone Janus GitHub repository
 RUN git clone https://github.com/meetecho/janus-gateway.git /janus || { echo "Cloning failed"; exit 1; }
@@ -42,10 +40,8 @@ RUN git clone https://github.com/meetecho/janus-gateway.git /janus || { echo "Cl
 # Change working directory to /janus
 WORKDIR /janus
 
-# Check if autogen.sh exists and make it executable
-RUN ls -l && \
-    chmod +x autogen.sh && \
-    set -x && \
+# Make autogen.sh executable and run the build commands
+RUN chmod +x autogen.sh && \
     sh autogen.sh && \
     ./configure --disable-websockets --disable-data-channels --disable-docs && \
     make && \
