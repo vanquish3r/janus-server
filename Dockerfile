@@ -1,6 +1,6 @@
 # Set environment variable to prevent timezone prompts
 ENV DEBIAN_FRONTEND=noninteractive
-ENV TZ=Etc/UTC  # You can set this to your preferred timezone, e.g., America/New_York
+ENV TZ=Etc/UTC
 
 # Use a base Ubuntu image
 FROM ubuntu:20.04
