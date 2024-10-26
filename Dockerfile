@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libsrtp2-dev \
     libsofia-sip-ua-dev \
     libglib2.0-dev \
-    pkg-config \  # Add pkg-config
+    pkg-config \
     libopus-dev \
     libogg-dev \
     libcurl4-openssl-dev \
