@@ -1,7 +1,7 @@
 # Use a base Ubuntu image
 FROM ubuntu:20.04
 
-# Set environment variable to prevent timezone prompts
+# Set environment variables to prevent timezone prompts
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
 
@@ -32,9 +32,14 @@ RUN apt-get update && apt-get install -y \
 # Clone Janus GitHub repository
 RUN git clone https://github.com/meetecho/janus-gateway.git /janus
 
-# Build and install Janus
+# Change working directory to /janus
 WORKDIR /janus
-RUN sh autogen.sh && \
+
+# Check if autogen.sh exists and make it executable
+RUN ls -l && \
+    chmod +x autogen.sh && \
+    set -x && \
+    sh autogen.sh && \
     ./configure --disable-websockets --disable-data-channels --disable-docs && \
     make && \
     make install && \
