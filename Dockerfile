@@ -10,12 +10,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     cmake \
     git \
-    libglib2.0-dev \   # Ensure this is included
     libmicrohttpd-dev \
     libjansson-dev \
     libssl-dev \
     libsrtp2-dev \
     libsofia-sip-ua-dev \
+    libglib2.0-dev \   # Ensure glib is included
     libopus-dev \
     libogg-dev \
     libcurl4-openssl-dev \
