@@ -39,23 +39,3 @@ RUN apt-get update && \
     ca-certificates && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-
-# Clone Janus GitHub repository
-RUN git clone https://github.com/meetecho/janus-gateway.git /janus
-
-# Change working directory to /janus
-WORKDIR /janus
-
-# Make autogen.sh executable and run the build commands
-RUN chmod +x autogen.sh && \
-    sh autogen.sh && \
-    ./configure --disable-websockets --disable-data-channels --disable-docs && \
-    make && \
-    make install && \
-    make configs
-
-# Expose necessary ports for Janus
-EXPOSE 8088 8188 7088 7089 10000-10200/udp
-
-# Start Janus server
-CMD ["janus", "-F", "/usr/local/etc/janus"]
