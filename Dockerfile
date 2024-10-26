@@ -1,9 +1,9 @@
+# Use a base Ubuntu image
+FROM ubuntu:20.04
+
 # Set environment variable to prevent timezone prompts
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
-
-# Use a base Ubuntu image
-FROM ubuntu:20.04
 
 # Update packages and install necessary dependencies
 RUN apt-get update && apt-get install -y \
