@@ -6,7 +6,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
 
 # Update packages and install necessary dependencies without man pages
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && \
+    apt-get upgrade -y && \  # Added upgrade step
+    apt-get install -y --no-install-recommends \
     build-essential \
     cmake \
     git \
@@ -30,7 +32,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     automake \
     uuid-dev \
     wget \
-    ca-certificates && \
+    ca-certificates || { echo "apt-get install failed"; exit 1; } && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
