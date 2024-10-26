@@ -26,11 +26,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libtool \
     automake \
     uuid-dev \
-    wget && \
+    wget \
+    ca-certificates && \   # Install CA certificates
     apt-get clean
 
+# Update the certificate store
+RUN update-ca-certificates
+
 # Check network connectivity
-RUN apt-get update && apt-get install -y curl && curl -I https://github.com
+RUN curl -I https://github.com
 
 # Clone Janus GitHub repository
 RUN git clone https://github.com/meetecho/janus-gateway.git /janus || { echo "Cloning failed"; exit 1; }
