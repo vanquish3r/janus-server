@@ -5,6 +5,11 @@ FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
 
+# Update package list and install software-properties-common
+RUN apt-get update && \
+    apt-get install -y software-properties-common && \
+    add-apt-repository universe
+
 # Update packages and install necessary dependencies without man pages
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
