@@ -15,7 +15,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libssl-dev \
     libsrtp2-dev \
     libsofia-sip-ua-dev \
-    libglib2.0-dev \   # Ensure glib is included
+    libglib2.0-dev \
+    libglib2.0-0 \
+    libgmodule-2.0-dev \
+    libgthread-2.0-dev \
     libopus-dev \
     libogg-dev \
     libcurl4-openssl-dev \
