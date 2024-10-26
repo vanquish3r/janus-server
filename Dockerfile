@@ -10,18 +10,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     cmake \
     git \
+    libglib2.0-dev \   # Ensure this is included
     libmicrohttpd-dev \
     libjansson-dev \
     libssl-dev \
     libsrtp2-dev \
     libsofia-sip-ua-dev \
-    libglib2.0-dev \
-    pkg-config \
     libopus-dev \
     libogg-dev \
     libcurl4-openssl-dev \
     liblua5.3-dev \
     libconfig-dev \
+    pkg-config \
     gengetopt \
     libtool \
     automake \
@@ -30,9 +30,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-
-# Verify glib installation
-RUN pkg-config --modversion glib-2.0
 
 # Clone Janus GitHub repository
 RUN git clone https://github.com/meetecho/janus-gateway.git /janus || { echo "Cloning failed"; exit 1; }
