@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     automake \
     uuid-dev \
     wget \
-    ca-certificates && \   # Install CA certificates
+    ca-certificates && \
     apt-get clean
 
 # Update the certificate store
