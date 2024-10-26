@@ -5,8 +5,8 @@ FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
 
-# Update packages and install necessary dependencies
-RUN apt-get update && apt-get install -y \
+# Update packages and install necessary dependencies without man pages
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     cmake \
     git \
