@@ -7,7 +7,7 @@ ENV TZ=Etc/UTC
 
 # Update packages and install necessary dependencies without man pages
 RUN apt-get update && \
-    apt-get upgrade -y && \  # Added upgrade step
+    apt-get upgrade -y && \  # Optionally upgrade the system
     apt-get install -y --no-install-recommends \
     build-essential \
     cmake \
