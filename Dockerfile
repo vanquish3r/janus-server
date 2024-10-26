@@ -32,12 +32,12 @@ RUN apt-get update && \
     automake \
     uuid-dev \
     wget \
-    ca-certificates || { echo "apt-get install failed"; exit 1; } && \
+    ca-certificates && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Clone Janus GitHub repository
-RUN git clone https://github.com/meetecho/janus-gateway.git /janus || { echo "Cloning failed"; exit 1; }
+RUN git clone https://github.com/meetecho/janus-gateway.git /janus
 
 # Change working directory to /janus
 WORKDIR /janus
