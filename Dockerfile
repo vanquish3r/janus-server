@@ -29,8 +29,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     wget && \
     apt-get clean
 
+# Check network connectivity
+RUN apt-get update && apt-get install -y curl && curl -I https://github.com
+
 # Clone Janus GitHub repository
-RUN git clone https://github.com/meetecho/janus-gateway.git /janus
+RUN git clone https://github.com/meetecho/janus-gateway.git /janus || { echo "Cloning failed"; exit 1; }
 
 # Change working directory to /janus
 WORKDIR /janus
