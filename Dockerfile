@@ -16,12 +16,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libsrtp2-dev \
     libsofia-sip-ua-dev \
     libglib2.0-dev \
+    pkg-config \  # Add pkg-config
     libopus-dev \
     libogg-dev \
     libcurl4-openssl-dev \
     liblua5.3-dev \
     libconfig-dev \
-    pkg-config \
     gengetopt \
     libtool \
     automake \
@@ -31,8 +31,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Check if packages were installed successfully
-RUN echo "Packages installed successfully"
+# Verify glib installation
+RUN pkg-config --modversion glib-2.0
 
 # Clone Janus GitHub repository
 RUN git clone https://github.com/meetecho/janus-gateway.git /janus || { echo "Cloning failed"; exit 1; }
